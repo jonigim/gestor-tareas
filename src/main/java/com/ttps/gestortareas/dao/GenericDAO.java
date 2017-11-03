@@ -10,9 +10,11 @@ public interface GenericDAO<T> {
 
 	 long countAll();
 
-	 void persist(T producto);
-
-	 void remove(T producto);
+	 void persist(T entity);
+	 
+	 void remove(T entity);
+	 
+	 void removeById(long id);
 
 	 void removeAll();
 }

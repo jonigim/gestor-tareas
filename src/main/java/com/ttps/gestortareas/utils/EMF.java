@@ -4,8 +4,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 public class EMF {
-	private
-	static final EntityManagerFactory EM = Persistence.createEntityManagerFactory("mapeos");
+	private	static final EntityManagerFactory EM = Persistence.createEntityManagerFactory("up");
 	
 	public static EntityManagerFactory getEMF() {
 		return EM;

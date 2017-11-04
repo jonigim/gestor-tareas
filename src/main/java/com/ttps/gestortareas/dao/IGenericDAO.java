@@ -2,7 +2,7 @@ package com.ttps.gestortareas.dao;
 
 import java.util.List;
 
-public interface GenericDAO<T> {
+public interface IGenericDAO<T> {
 
 	 T findById(Long id);
 
@@ -10,7 +10,7 @@ public interface GenericDAO<T> {
 
 	 long countAll();
 
-	 void persist(T entity);
+	 T persist(T entity);
 	 
 	 void remove(T entity);
 	 

@@ -1,6 +1,6 @@
-package com.ttps.gestortareas.dao;
+package com.ttps.gestortareas.dao.impl;
 
-import com.ttps.gestortareas.dao.impl.AbstractDao;
+import com.ttps.gestortareas.dao.IGenericDAO;
 import com.ttps.gestortareas.domain.TaskList;
 
 public class TaskListDao extends AbstractDao<TaskList> implements IGenericDAO<TaskList> {

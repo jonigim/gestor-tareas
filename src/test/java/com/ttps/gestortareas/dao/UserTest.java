@@ -3,8 +3,10 @@ package com.ttps.gestortareas.dao;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import java.io.IOException;
 import java.util.List;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -14,12 +16,21 @@ import com.ttps.gestortareas.domain.User;
 public class UserTest {
 	
 	private UserDao userDao;
+	private User userDb;
 	
 	
 	@Before
 	public void setUp() throws Exception {
 		this.userDao = DaoFactory.getUserDao();
+		this.userDb = null;
 	}
+	
+	@After
+    public void tearDown() throws IOException {
+        if (userDb !=null) {
+        	userDao.remove(userDb);
+        }
+    }
 	
 
 	@Test
@@ -28,8 +39,8 @@ public class UserTest {
 		userDao.persist(user);
 		long id = user.getId();
 		assertNotNull(id);
-		User userDB = userDao.findById(id);
-		assertEquals(userDB.getName(),"Juan Prueba");
+		userDb = userDao.findById(id);
+		assertEquals(userDb.getName(),"Juan Prueba");
 	}
 	
 	@Test
@@ -44,6 +55,20 @@ public class UserTest {
 		userDao.remove(userToRemove);
 		users = userDao.findAll();
 		assertEquals(cantUsers-1, users.size());
+	}
+	
+	@Test
+	public void testUpdateUser() throws Exception{
+		String oldName = "juanito";
+		User user = this.createUser("usertoModify", oldName);
+		userDao.persist(user);
+		String newName = "Juanito Crecio";
+		
+		user.setName(newName);
+		userDao.update(user);
+		
+		userDb = userDao.findById(user.getId());
+		assertEquals(newName, userDb.getName());
 	}
 	
 	

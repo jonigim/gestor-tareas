@@ -34,9 +34,10 @@ public class Team {
 		super();
 		this.name = name;
 		if (members == null) {
-			members = new ArrayList<>();
+			this.members = new ArrayList<>();
+		}else {
+			this.members = members;
 		}
-		this.members = members;
 		this.owner = owner;
 	}
 	public Long getId() {

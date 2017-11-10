@@ -1,12 +1,28 @@
 package com.ttps.gestortareas.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="user")
 public class User {
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	private String username;
 	private String password;
 	private String name;
 	private String email;
+	
+	@ManyToOne(optional = true)
+	@JoinColumn(name="team_id")
+	private Team team;
 	
 	public User(String username, String password, String name, String email) {
 		super();
@@ -14,6 +30,11 @@ public class User {
 		this.password = password;
 		this.name = name;
 		this.email = email;
+	}
+	
+	public User(String username, String password, String name, String email, Team team) {
+		this(username, password, name, email);
+		this.team = team;
 	}
 	
 	public Long getId() {
@@ -46,5 +67,10 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
+	public Team getTeam() {
+		return team;
+	}
+	public void setTeam(Team team) {
+		this.team = team;
+	}
 }

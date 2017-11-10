@@ -3,9 +3,20 @@ package com.ttps.gestortareas.domain;
 import java.sql.Date;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="board")
 public class Board {
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
+	
 	private String name;
 	private Date startDate;
 	private Date finishDate;

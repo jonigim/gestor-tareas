@@ -24,6 +24,10 @@ public class User {
 	@JoinColumn(name="team_id")
 	private Team team;
 	
+	public User() {
+		
+	}
+	
 	public User(String username, String password, String name, String email) {
 		super();
 		this.username = username;

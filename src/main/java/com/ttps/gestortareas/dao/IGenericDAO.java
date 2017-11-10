@@ -17,4 +17,6 @@ public interface IGenericDAO<T> {
 	 void removeById(long id);
 
 	 void removeAll();
+	 
+	 void update(T entity);
 }

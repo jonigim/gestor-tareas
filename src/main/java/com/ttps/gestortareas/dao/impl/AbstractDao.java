@@ -59,7 +59,7 @@ public abstract class AbstractDao<T> implements IGenericDAO<T> {
 		try {
 			tx = em.getTransaction();
 			tx.begin();
-			em.remove(entity);
+			em.remove(em.merge(entity));
 			tx.commit();
 		} catch (RuntimeException e) {
 			if (tx != null && tx.isActive())
@@ -89,6 +89,25 @@ public abstract class AbstractDao<T> implements IGenericDAO<T> {
 	public T findById(Long id) {
 		EntityManager em = EMF.getEMF().createEntityManager();
 		return em.find(persistenClass, id);
+	}
+	
+	@Override
+	public void update(T entity) {
+		EntityManager em = EMF.getEMF().createEntityManager();
+		EntityTransaction tx = null;
+		try {
+			tx = em.getTransaction();
+			tx.begin();
+			em.merge(entity);
+			tx.commit();
+		} catch (RuntimeException e) {
+			if (tx != null && tx.isActive())
+				tx.rollback();
+			throw e;
+		} finally {
+			em.close();
+		}
+		
 	}
 
 }

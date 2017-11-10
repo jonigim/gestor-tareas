@@ -1,5 +1,6 @@
 package com.ttps.gestortareas.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -25,9 +26,16 @@ public class Team {
 	@OneToOne(optional = false)
 	private User owner;
 	
+	public Team() {
+		
+	}
+	
 	public Team(String name, List<User> members, User owner) {
 		super();
 		this.name = name;
+		if (members == null) {
+			members = new ArrayList<>();
+		}
 		this.members = members;
 		this.owner = owner;
 	}

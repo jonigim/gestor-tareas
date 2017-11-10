@@ -6,7 +6,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -19,6 +21,10 @@ public class CheckList {
 	
 	@OneToMany(mappedBy="checkList")
 	private List<Item> items;
+	
+	@OneToOne(optional = false)
+	@JoinColumn(name="task_id")
+	private Task task;
 	
 	public Long getId() {
 		return id;
@@ -33,7 +39,11 @@ public class CheckList {
 	public void setItems(List<Item> items) {
 		this.items = items;
 	}
+	public Task getTask() {
+		return task;
+	}
+	public void setTask(Task task) {
+		this.task = task;
+	}
 	
-	
-
 }

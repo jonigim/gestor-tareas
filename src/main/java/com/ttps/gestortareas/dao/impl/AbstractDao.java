@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceContextType;
 
 import com.ttps.gestortareas.dao.IGenericDAO;
 import com.ttps.gestortareas.utils.EMF;
@@ -15,6 +17,9 @@ public abstract class AbstractDao<T> implements IGenericDAO<T> {
 	public final void setClazz(Class<T> clazzToSet) {
 		this.persistenClass = clazzToSet;
 	}
+	
+	@PersistenceContext(unitName = "up", type = PersistenceContextType.TRANSACTION) 
+	private EntityManager entityManger;
 
 	@Override
 	public List<T> findAll() {
@@ -30,6 +35,7 @@ public abstract class AbstractDao<T> implements IGenericDAO<T> {
 	@Override
 	public T persist(T entity) {
 		EntityManager em = EMF.getEMF().createEntityManager();
+		//EntityManager em = this.entityManger;
 		EntityTransaction tx = null;
 		try {
 			tx = em.getTransaction();

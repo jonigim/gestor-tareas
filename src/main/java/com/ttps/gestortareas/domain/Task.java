@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -21,13 +23,17 @@ public class Task {
 	private String name;
 	private String description;
 	
+	@OneToMany
 	private List<User> members;
+	
 	private Date assignmentDate;
 	private Date expirationDate;
 	
 	
+	@OneToMany(mappedBy="task")
 	private List<Comment> comments;
 	
+	@OneToOne(optional = true)
 	private CheckList items;
 	
 	@ManyToOne(optional = false)

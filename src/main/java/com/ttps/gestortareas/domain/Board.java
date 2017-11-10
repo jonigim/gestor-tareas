@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -20,9 +22,17 @@ public class Board {
 	private String name;
 	private Date startDate;
 	private Date finishDate;
+	
+	@OneToMany
 	private List<User> userMembers;
+	
+	@OneToMany
 	private List<Team> teamMembers;
+	
+	@OneToMany
 	private List<TaskList> tasklists;
+	
+	@OneToOne(optional = false)
 	private User owner;
 	
 	public Board(String name, Date startDate, Date finishDate, List<User> userMembers, List<Team> teamMembers,

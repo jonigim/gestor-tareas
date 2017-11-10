@@ -1,10 +1,13 @@
 package com.ttps.gestortareas.dao.impl;
 
-public class ItemDao extends AbstractDao<Board> implements IGenericDAO<Board>  {
+import com.ttps.gestortareas.dao.IGenericDAO;
+import com.ttps.gestortareas.domain.Item;
+
+public class ItemDao extends AbstractDao<Item> implements IGenericDAO<Item>  {
 
 	public ItemDao() {
 		super();
-		this.persistenClass = Board.class;
+		this.persistenClass = Item.class;
 	}
 	
 }

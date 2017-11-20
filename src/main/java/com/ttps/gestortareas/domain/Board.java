@@ -36,9 +36,13 @@ public class Board {
 	@OneToOne(optional = false)
 	private User owner;
 	
+	public Board() {
+		
+	}
+	
 	public Board(String name, Date startDate, Date finishDate, List<User> userMembers, List<Team> teamMembers,
 			User owner) {
-		super();
+		this();
 		this.name = name;
 		this.startDate = startDate;
 		this.finishDate = finishDate;

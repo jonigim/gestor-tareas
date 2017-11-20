@@ -42,6 +42,10 @@ public class Task {
 	@JoinColumn(name="task_list_id")
 	private TaskList taskList;
 	
+	public Task(){
+		
+	}
+	
 	public Task(String name, String description, List<User> members, Date assignmentDate, Date expirationDate,
 			List<Comment> comments, CheckList checklist, TaskList taskList) {
 		super();

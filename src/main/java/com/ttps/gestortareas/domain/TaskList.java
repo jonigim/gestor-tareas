@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -20,6 +22,10 @@ public class TaskList {
 	
 	@OneToMany(mappedBy="taskList")
 	private List<Task> tasks;
+	
+	@ManyToOne(optional=false)
+	@JoinColumn(name = "board_id")
+	private Board board;
 	
 	public Long getId() {
 		return id;
@@ -38,5 +44,14 @@ public class TaskList {
 	}
 	public void setTasks(List<Task> tasks) {
 		this.tasks = tasks;
+	}
+	public Board getBoard() {
+		return board;
+	}
+	public void setBoard(Board board) {
+		this.board = board;
+	}
+	public String getName() {
+		return name;
 	}
 }

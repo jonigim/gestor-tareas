@@ -23,7 +23,6 @@ public abstract class AbstractDao<T> implements IGenericDAO<T> {
 	
 	@PersistenceContext(unitName = "up", type = PersistenceContextType.TRANSACTION) 
 	private EntityManager entityManger;
-
 	
 	public EntityManager getEntityManger() {
 		return entityManger;

@@ -7,7 +7,7 @@ version="3.0">
 
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>/WEB-INF/spring/app-ctx.xml</param-value>
+		<param-value>app-ctx.xml</param-value>
 	</context-param>
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>

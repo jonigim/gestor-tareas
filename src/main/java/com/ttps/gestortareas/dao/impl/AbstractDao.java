@@ -3,13 +3,15 @@ package com.ttps.gestortareas.dao.impl;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceContext;
-import javax.persistence.PersistenceContextType;
+
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.ttps.gestortareas.dao.IGenericDAO;
-import com.ttps.gestortareas.utils.EMF;
 
+@Transactional
+@Repository
 public abstract class AbstractDao<T> implements IGenericDAO<T> {
 
 	protected Class<T> persistenClass;
@@ -18,15 +20,23 @@ public abstract class AbstractDao<T> implements IGenericDAO<T> {
 		this.persistenClass = clazzToSet;
 	}
 	
-	@PersistenceContext(unitName = "up", type = PersistenceContextType.TRANSACTION) 
+	@PersistenceContext
 	private EntityManager entityManger;
 
-	@Override
-	public List<T> findAll() {
-		EntityManager em = EMF.getEMF().createEntityManager();
-		return em.createQuery("from " + persistenClass.getName()).getResultList();
+	public EntityManager getEntityManger() {
+		return entityManger;
+	}
+	
+	public void setEntityManger(EntityManager entityManger) {
+		this.entityManger = entityManger;
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<T> findAll() {
+		return this.getEntityManger().createQuery("from " + persistenClass.getName()).getResultList();
+	}
+	
 	@Override
 	public long countAll() {
 		return this.findAll().size();
@@ -34,40 +44,13 @@ public abstract class AbstractDao<T> implements IGenericDAO<T> {
 
 	@Override
 	public T persist(T entity) {
-		EntityManager em = EMF.getEMF().createEntityManager();
-		//EntityManager em = this.entityManger;
-		EntityTransaction tx = null;
-		try {
-			tx = em.getTransaction();
-			tx.begin();
-			em.persist(entity);
-			tx.commit();
-		} catch (RuntimeException e) {
-			if (tx != null && tx.isActive())
-				tx.rollback();
-			throw e;
-		} finally {
-			em.close();
-		}
+		this.getEntityManger().persist(entity);
 		return entity;
 	}
 
 	@Override
 	public void remove(T entity) {
-		EntityManager em = EMF.getEMF().createEntityManager();
-		EntityTransaction tx = null;
-		try {
-			tx = em.getTransaction();
-			tx.begin();
-			em.remove(em.merge(entity));
-			tx.commit();
-		} catch (RuntimeException e) {
-			if (tx != null && tx.isActive())
-				tx.rollback();
-			throw e;
-		} finally {
-			em.close();
-		}
+		this.getEntityManger().remove(this.getEntityManger().merge(entity));
 	}
 
 	@Override
@@ -87,27 +70,12 @@ public abstract class AbstractDao<T> implements IGenericDAO<T> {
 
 	@Override
 	public T findById(Long id) {
-		EntityManager em = EMF.getEMF().createEntityManager();
-		return em.find(persistenClass, id);
+		return this.getEntityManger().find(persistenClass, id);
 	}
 	
 	@Override
 	public void update(T entity) {
-		EntityManager em = EMF.getEMF().createEntityManager();
-		EntityTransaction tx = null;
-		try {
-			tx = em.getTransaction();
-			tx.begin();
-			em.merge(entity);
-			tx.commit();
-		} catch (RuntimeException e) {
-			if (tx != null && tx.isActive())
-				tx.rollback();
-			throw e;
-		} finally {
-			em.close();
-		}
-		
+		this.getEntityManger().merge(entity);
 	}
 
 }

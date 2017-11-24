@@ -9,19 +9,20 @@ import java.util.List;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.ttps.gestortareas.dao.impl.UserDao;
 import com.ttps.gestortareas.domain.User;
 
 public class UserTest {
 	
-	private UserDao userDao;
+	private IGenericDAO<User> userDao;
 	private User userDb;
 	
 	
 	@Before
 	public void setUp() throws Exception {
-		this.userDao = DaoFactory.getUserDao();
+		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("app-ctx.xml");
+		this.userDao = (IGenericDAO<User>) ctx.getBean("userDao");
 		this.userDb = null;
 	}
 	

@@ -4,3 +4,4 @@ target
 .settings
 artifact.info
 sensitive.conf
+src/main/webapp/WEB-INF/app-ctx.xml

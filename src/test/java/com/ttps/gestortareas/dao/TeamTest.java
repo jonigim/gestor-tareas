@@ -9,25 +9,25 @@ import java.util.List;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.ttps.gestortareas.dao.impl.TeamDao;
-import com.ttps.gestortareas.dao.impl.UserDao;
 import com.ttps.gestortareas.domain.Team;
 import com.ttps.gestortareas.domain.User;
 
 
 public class TeamTest {
 	
-	private TeamDao teamDao;
-	private UserDao userDao;
+	private IGenericDAO<Team> teamDao;
+	private IGenericDAO<User> userDao;
 	private User userDb;
 	private Team teamDb;
 	
 	
 	@Before
 	public void setUp() throws Exception {
-		this.teamDao = DaoFactory.getTeamDao();
-		this.userDao = DaoFactory.getUserDao();
+		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("app-ctx.xml");
+		this.teamDao = (IGenericDAO<Team>) ctx.getBean("teamDao");
+		this.userDao = (IGenericDAO<User>) ctx.getBean("userDao");
 		this.userDb = userDao.persist(this.createUser("user1", "probando juan"));
 		this.teamDb = new Team("Team1", null, userDb);
 	}

@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -23,18 +24,19 @@ public class Task {
 	private String name;
 	private String description;
 	
-	@OneToMany
+	@ManyToMany
 	private List<User> members;
 	
 	private Date assignmentDate;
 	private Date expirationDate;
 	
 	
-	@OneToMany(mappedBy="task")
+	@OneToMany
+	@JoinColumn(name="task_id")
 	private List<Comment> comments;
 	
 	@OneToOne(optional = true)
-	private CheckList items;
+	private CheckList checklist;
 	
 	@ManyToOne(optional = false)
 	@JoinColumn(name="task_list_id")
@@ -45,7 +47,7 @@ public class Task {
 	}
 	
 	public Task(String name, String description, List<User> members, Date assignmentDate, Date expirationDate,
-			List<Comment> comments, CheckList items, TaskList taskList) {
+			List<Comment> comments, CheckList checklist, TaskList taskList) {
 		super();
 		this.name = name;
 		this.description = description;
@@ -53,7 +55,7 @@ public class Task {
 		this.assignmentDate = assignmentDate;
 		this.expirationDate = expirationDate;
 		this.comments = comments;
-		this.items = items;
+		this.checklist = checklist;
 		this.taskList = taskList;
 	}
 
@@ -113,12 +115,12 @@ public class Task {
 		this.comments = comments;
 	}
 
-	public CheckList getItems() {
-		return items;
+	public CheckList getChecklist() {
+		return checklist;
 	}
 
-	public void setItems(CheckList items) {
-		this.items = items;
+	public void setChecklist(CheckList checklist) {
+		this.checklist = checklist;
 	}
 
 	public TaskList getTaskList() {

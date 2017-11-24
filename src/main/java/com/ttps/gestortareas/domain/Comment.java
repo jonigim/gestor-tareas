@@ -6,8 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -21,11 +19,7 @@ public class Comment {
 	
 	@OneToOne(optional = false)
 	private User author;
-	
-	@ManyToOne(optional = false)
-	@JoinColumn(name="task_id")
-	private Task task;
-	
+
 	private String description;
 	private Date creationDate;
 	
@@ -53,11 +47,4 @@ public class Comment {
 	public void setCreationDate(Date creationDate) {
 		this.creationDate = creationDate;
 	}
-	public Task getTask() {
-		return task;
-	}
-	public void setTask(Task task) {
-		this.task = task;
-	}
-
 }

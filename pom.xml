@@ -9,6 +9,7 @@
 	<url>http://maven.apache.org</url>
 	<properties>
 		<junit.version>4.11</junit.version>
+		<spring.version>5.0.1.RELEASE</spring.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -35,23 +36,37 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.39</version>
 		</dependency>
+		<!-- Spring -->
 		<dependency>
-		  <groupId>org.springframework</groupId>
-		  <artifactId>spring-context</artifactId>
-		  <version>5.0.1.RELEASE</version>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${spring.version}</version>
 		</dependency>
 		<dependency>
-		  <groupId>org.springframework</groupId>
-		  <artifactId>spring-orm</artifactId>
-		  <version>5.0.1.RELEASE</version>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>${spring.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-tx</artifactId>
-			<version>5.0.1.RELEASE</version>
+			<version>${spring.version}</version>
 		</dependency>
+
 	</dependencies>
+
+
 	<build>
 		<finalName>gestortareas</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+		</plugins>
 	</build>
 </project>

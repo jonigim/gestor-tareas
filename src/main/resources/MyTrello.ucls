@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<class-diagram version="1.2.1" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+<class-diagram version="1.2.2" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
   <class id="1" language="java" name="com.ttps.gestortareas.domain.Team" project="gestortareas" 
     file="/gestortareas/src/main/java/com/ttps/gestortareas/domain/Team.java" binary="false" corner="BOTTOM_RIGHT">    
@@ -98,75 +98,77 @@
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="15">    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="16" name="author">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="17" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="18">    
-    <bendpoint x="984" y="668"/>    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="19" name="members">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="20" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="21">    
     <bendpoint x="1158" y="890"/>    
     <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="22" name="comments">        
+      <attribute id="16" name="comments">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="23" minimum="0" maximum="2147483647">        
+      <multiplicity id="17" minimum="0" maximum="2147483647">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="24">    
-    <bendpoint x="1330" y="410"/>    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="25" name="items">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="26" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="7" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="27">    
+  <association id="18">    
     <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="28" name="items">        
+      <attribute id="19" name="items">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="29" minimum="0" maximum="2147483647">        
+      <multiplicity id="20" minimum="0" maximum="2147483647">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="30">    
-    <bendpoint x="252" y="410"/>    
+  <association id="21">    
+    <bendpoint x="422" y="395"/>    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="31" name="owner">        
+      <attribute id="22" name="members">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="32" minimum="0" maximum="1">        
+      <multiplicity id="23" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="24">    
+    <bendpoint x="750" y="573"/>    
+    <bendpoint x="753" y="572"/>    
+    <bendpoint x="508" y="576"/>    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="25" name="owner">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="26" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="27">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="28" name="tasklists">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="29" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="30">    
+    <bendpoint x="510" y="409"/>    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="31" name="userMembers">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="32" minimum="0" maximum="2147483647">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
@@ -174,39 +176,37 @@
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="33">    
-    <bendpoint x="750" y="573"/>    
-    <bendpoint x="753" y="572"/>    
-    <bendpoint x="508" y="576"/>    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="34" name="owner">        
+    <bendpoint x="1330" y="410"/>    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="34" name="checklist">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
       <multiplicity id="35" minimum="0" maximum="1">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
+    <end type="TARGET" refId="7" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="36">    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="37" name="tasklists">        
+    <bendpoint x="252" y="410"/>    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="37" name="owner">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="38" minimum="0" maximum="2147483647">        
+      <multiplicity id="38" minimum="0" maximum="1">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="8" navigable="true"/>    
+    <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="39">    
-    <bendpoint x="422" y="395"/>    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="40" name="members">        
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="40" name="author">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="41" minimum="0" maximum="2147483647">        
+      <multiplicity id="41" minimum="0" maximum="1">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
@@ -214,9 +214,9 @@
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="42">    
-    <bendpoint x="510" y="409"/>    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="43" name="userMembers">        
+    <bendpoint x="984" y="668"/>    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="43" name="members">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
       <multiplicity id="44" minimum="0" maximum="2147483647">        

@@ -27,7 +27,6 @@ public abstract class AbstractDao<T> implements IGenericDAO<T> {
 	public EntityManager getEntityManger() {
 		return entityManger;
 	}
-
 	
 	@PersistenceContext
 	public void setEntityManger(EntityManager entityManger) {

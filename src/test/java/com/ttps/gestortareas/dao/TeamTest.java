@@ -25,7 +25,7 @@ public class TeamTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("app-ctx.xml");
+		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring/app-ctx.xml");
 		this.teamDao = (IGenericDAO<Team>) ctx.getBean("teamDao");
 		this.userDao = (IGenericDAO<User>) ctx.getBean("userDao");
 		this.userDb = userDao.persist(this.createUser("user1", "probando juan"));
@@ -51,7 +51,7 @@ public class TeamTest {
 		Team team = new Team("Team1", null, user);
 		teamDao.persist(team);
 		
-		long id = teamDb.getId();
+		long id = team.getId();
 		assertNotNull(id);
 		assertEquals(0, team.getMembers().size());
 		teamDao.remove(team);
@@ -64,10 +64,13 @@ public class TeamTest {
 		List<Team> teams = teamDao.findAll();
 		Team team = teams.get(0);
 		userDao.persist(user);
+		team = teamDao.findById(team.getId());
 		int sizeMembers = team.getMembers().size();
 		team.getMembers().add(user);
 		teamDao.update(team);
 		assertEquals(sizeMembers+1,team.getMembers().size());
+		team.getMembers().remove(user);
+		teamDao.update(team);
 		userDao.remove(user);
 	}
 	

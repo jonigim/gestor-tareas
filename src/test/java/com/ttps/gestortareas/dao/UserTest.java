@@ -21,7 +21,7 @@ public class UserTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("app-ctx.xml");
+		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring/app-ctx.xml");
 		this.userDao = (IGenericDAO<User>) ctx.getBean("userDao");
 		this.userDb = null;
 	}

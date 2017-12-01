@@ -57,7 +57,6 @@ public class TeamTest {
 		teamDao.remove(team);
 	}
 	
-	
 	@Test
 	public void testAddMembers() {
 		User user = this.createUser("testteam", "Pedro");

@@ -75,4 +75,20 @@ public class User {
 		this.email = email;
 	}
 
+	public List<Board> getBoards() {
+		return boards;
+	}
+
+	public void setBoards(List<Board> boards) {
+		this.boards = boards;
+	}
+
+	public List<Team> getTeam() {
+		return team;
+	}
+
+	public void setTeam(List<Team> team) {
+		this.team = team;
+	}
+
 }

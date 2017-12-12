@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ttps.gestortareas.domain.User;
+import com.ttps.gestortareas.dto.UserDTO;
 import com.ttps.gestortareas.service.UserService;
 
 @RestController
@@ -46,13 +47,14 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public ResponseEntity<User> getUser(@PathVariable("id") long id) {
+	public ResponseEntity<UserDTO> getUser(@PathVariable("id") long id) {
 
 		User user = userService.getUserById(id);
 		if (user == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
-		return new ResponseEntity<>(user, HttpStatus.OK);
+		 UserDTO userDto = new UserDTO(user);
+		return new ResponseEntity<>(userDto, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)

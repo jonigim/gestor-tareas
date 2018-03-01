@@ -1,11 +1,13 @@
 package com.ttps.gestortareas.controller;
 
+import java.io.IOException;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -18,6 +20,7 @@ import com.ttps.gestortareas.dto.UserDTO;
 import com.ttps.gestortareas.exception.AuthenticationException;
 import com.ttps.gestortareas.service.UserService;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -34,15 +37,16 @@ public class UserController {
 			String token = userService.authenticateUser(mapHeaders.get("user"), mapHeaders.get("password"));
 			HttpHeaders responseHeaders = new HttpHeaders();
 			responseHeaders.set(TOKEN, token);
+			responseHeaders.set("access-control-expose-headers", TOKEN);
 			return new ResponseEntity<>(responseHeaders, HttpStatus.NO_CONTENT);
-		} catch (Exception e) {
+		} catch (AuthenticationException e) {
 			return new ResponseEntity<>(HttpStatus.FORBIDDEN);
 		}
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<User> createUser(@RequestBody User user) {
-		userService.createUser(user);
+		user = userService.createUser(user);
 		if (user == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
@@ -61,7 +65,7 @@ public class UserController {
 			}
 			UserDTO userDto = new UserDTO(user);
 			return new ResponseEntity<>(userDto, HttpStatus.OK);
-		}catch (Exception e) {
+		}catch (AuthenticationException e) {
 			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 		}
 	}
@@ -75,7 +79,7 @@ public class UserController {
 			return new ResponseEntity<>(user, HttpStatus.OK);
 		}catch (AuthenticationException e) {
 			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-		} catch (Exception e) {
+		} catch (IOException e) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}

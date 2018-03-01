@@ -1,5 +1,6 @@
 package com.ttps.gestortareas.service.impl;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,13 +38,15 @@ public class UserServiceImpl  implements UserService{
 	}
 	
 	@Override
-	public void updateUser(long userId, User user) {
+	public void updateUser(long userId, User user) throws IOException {
 		User userDb = userDao.findById(userId);
 		if (user != null) {
 			userDb.setName(user.getName());
 			userDb.setEmail(user.getEmail());
 			userDb.setPassword(user.getPassword());
 			userDao.update(userDb);
+		}else {
+			throw new IOException("User not found");
 		}
 	}
 	

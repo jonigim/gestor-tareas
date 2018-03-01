@@ -12,6 +12,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 @Entity
 @Table(name="board")
 public class Board {
@@ -25,6 +28,7 @@ public class Board {
 	private Date finishDate;
 	
 	@ManyToMany
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<User> userMembers;
 	
 	@ManyToMany

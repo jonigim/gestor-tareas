@@ -1,7 +1,10 @@
 package com.ttps.gestortareas.dto;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
+import com.ttps.gestortareas.domain.Board;
 import com.ttps.gestortareas.domain.User;
 
 public class UserDTO implements Serializable {
@@ -12,7 +15,7 @@ public class UserDTO implements Serializable {
 	private String password;
 	private String name;
 	private String email;
-	
+	private List<BoardDTO> boards;
 	
 	public UserDTO(User user) {
 		super();
@@ -21,6 +24,12 @@ public class UserDTO implements Serializable {
 		this.password = user.getPassword();
 		this.name = user.getName();
 		this.email = user.getEmail();
+		List<BoardDTO> boardsList = new ArrayList<>();
+		for (Board board : user.getBoards()) {
+			BoardDTO dto = new BoardDTO(board);
+			boardsList.add(dto);
+		}
+		this.boards = boardsList;
 	}
 
 	public Long getId() {
@@ -52,6 +61,12 @@ public class UserDTO implements Serializable {
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	public List<BoardDTO> getBoards() {
+		return boards;
+	}
+	public void setBoards(List<BoardDTO> boards) {
+		this.boards = boards;
 	}
 
 }
